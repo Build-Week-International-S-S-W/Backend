@@ -1,10 +1,14 @@
 const express = require("express")
 const helmet = require("helmet")
 const cors = require("cors")
+const dotenv = require("dotenv")
 
 const usersRouter = require("./api/users_auth/user_auth-router")
 
+dotenv.config()
+
 const server = express()
+const host = process.env.HOST || "0.0.0.0"
 const port = process.env.PORT || 5000
 
 server.use(helmet())
@@ -29,5 +33,5 @@ server.use((err, req, res, next) => {
 
 
 server.listen(port, () => {
-  console.log(`\n** Running on http://localhost:${port} **\n`)
+  console.log(`\n** Running on http://${host}:${port} **\n`)
 })
