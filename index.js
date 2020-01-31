@@ -1,11 +1,8 @@
 const express = require("express")
 const helmet = require("helmet")
 const cors = require("cors")
-const dotenv = require("dotenv")
 
 const usersRouter = require("./api/users_auth/user_auth-router")
-
-dotenv.config()
 
 const server = express()
 const host = process.env.HOST || "0.0.0.0"
