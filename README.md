@@ -14,3 +14,6 @@ POST  https://international-school-sw.herokuapp.com/api/users/login
 
     username: "johny", 
     password: "Just_Password"
+
+3. Register 
+POST  https://international-school-sw.herokuapp.com/api/users/register
