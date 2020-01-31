@@ -5,7 +5,6 @@ function find() {
     .join("roles", "roles.id", "users.role_id") 
     .select("users.id", "users.username", "users.name", "users.email", 
             "users.phone_number", "users.password", "roles.role_name") 
-
 }
 
 function findBy(filter) {

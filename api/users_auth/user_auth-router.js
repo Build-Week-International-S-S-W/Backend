@@ -6,21 +6,22 @@ const router = express.Router()
 router.get("/", async (req, res, next) => {
   try {
     const users = await usersModel.find()
+    console.log(users)
     res.json(users)
   } catch (err) {
     next(err)
   }
 })
 
-// router.post("/register", async (req, res, next) => {
-//     try {
-//       const saved = await usersModel.add(req.body)
+router.post("/register", async (req, res, next) => {
+    try {
+      const saved = await usersModel.add(req.body)
       
-//       res.status(201).json(saved)
-//     } catch (err) {
-//       next(err)
-//     }
-// })
+      res.status(201).json(saved)
+    } catch (err) {
+      next(err)
+    }
+})
   
 router.post("/login", async (req, res, next) => {
     try {

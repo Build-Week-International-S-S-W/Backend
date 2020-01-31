@@ -22,6 +22,7 @@ exports.up = async function(knex) {
             .inTable("roles")
             .onDelete("SET NULL")
             .onUpdate("SET NULL")
+            // .defaultTo("undefined")
     });
   };
   
