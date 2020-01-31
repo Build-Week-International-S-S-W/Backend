@@ -29,6 +29,6 @@ server.use((err, req, res, next) => {
 })
 
 
-server.listen(port, () => {
+server.listen(port, host, () => {
   console.log(`\n** Running on http://${host}:${port} **\n`)
 })
