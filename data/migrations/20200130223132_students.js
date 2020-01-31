@@ -7,7 +7,7 @@ exports.up = async function(knex) {
 
     await knex.schema.createTable("classes", (class_table) => {
         class_table.increments("id")
-        class_table.string("class")
+        class_table.integer("class")
         class_table.integer("grade_id")
             .references("id")
             .inTable("grades")
@@ -64,7 +64,7 @@ exports.up = async function(knex) {
             .defaultTo(false)
         student.boolean("birth_certificate")
             .defaultTo(true)
-        student.string("special needs", 1000)
+        student.string("special_needs", 1000)
         student.integer("contact_id")
             .references("id")
             .inTable("contact_info")
