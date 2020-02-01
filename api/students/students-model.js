@@ -71,6 +71,10 @@ async function update(id, body) {
 	return findById(id)
 }
 
+function remove(id) {
+	return db("students").where({ id }).del()
+}
+
 module.exports = {
   find,
   findByClass,
@@ -78,4 +82,5 @@ module.exports = {
   findById,
   add,
   update,
+  remove
 }

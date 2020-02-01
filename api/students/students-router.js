@@ -89,6 +89,21 @@ router.put("/:id", async (req, res, next) => {
     }
 })
   
+router.delete("/:id", async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const deletedCount = await studentsModel.remove(id)
   
+      if (deletedCount) {
+        res.status(204).end()
+      } else {
+        res.status(404).json({
+          message: "Could not find user with given ID",
+        })
+      }
+    } catch(err) {
+      next(err)
+    }
+})  
 
 module.exports = router

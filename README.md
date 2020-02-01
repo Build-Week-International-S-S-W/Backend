@@ -70,3 +70,6 @@ PUT https://international-school-sw.herokuapp.com/api/students/:id
   "special_needs": "nothing",
   "contact_id": 1
 }
+
+10. Delete student
+DELETE https://international-school-sw.herokuapp.com/api/students/:id
