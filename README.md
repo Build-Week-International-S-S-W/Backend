@@ -17,3 +17,9 @@ POST  https://international-school-sw.herokuapp.com/api/users/login
 
 3. Register 
 POST  https://international-school-sw.herokuapp.com/api/users/register
+
+4. Get all students
+GET https://international-school-sw.herokuapp.com/api/students
+
+5. Get students by class
+GET https://international-school-sw.herokuapp.com/api/students/:class_id
