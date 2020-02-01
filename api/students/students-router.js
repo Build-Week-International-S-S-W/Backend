@@ -46,4 +46,22 @@ router.get("/grades/:grade_id", async (req, res, next) => {
     }
 })
 
+router.get("/:id", async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const student = await studentsModel.findById(id)
+  
+      if (student) {
+        res.json(student)
+      } else {
+        res.status(404).json({
+          message: "Could not find student with given ID",
+        })
+      }
+    } catch(err) {
+      next(err)
+    }
+  })
+  
+
 module.exports = router

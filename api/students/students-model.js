@@ -35,10 +35,22 @@ function findByGrade(grade_id) {
         "s.special_needs", "ci.contact_name", "ci.phone_number") 
 }
 
+function findById(s_id) {
+	return db("students as s") 
+    .join("grades as g", "g.id", "s.grade_id") 
+    .where({ s_id })
+    .join("classes as c", "c.id", "s.class_id")
+    .join("status as st", "st.id", "status_id")
+    .join("contact_info as ci", "ci.id", "contact_id")
+    .select("s.id as s_id", "s.name", "g.grade", "c.class", "s.background", 
+        "st.status", "s.age", "s.insurance", "s.birth_certificate", 
+        "s.special_needs", "ci.contact_name", "ci.phone_number") 
+}
 
 
 module.exports = {
   find,
   findByClass,
   findByGrade,
+  findById,
 }
