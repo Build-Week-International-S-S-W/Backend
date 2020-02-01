@@ -27,7 +27,7 @@ exports.up = async function(knex) {
 
     await knex.schema.createTable("contact_info", (contact) => {
         contact.increments("id")
-        contact.string("name")
+        contact.string("contact_name")
             .notNullable()
         contact.integer("phone_number")
         contact.string("email")

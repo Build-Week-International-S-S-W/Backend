@@ -3,6 +3,7 @@ const helmet = require("helmet")
 const cors = require("cors")
 
 const usersRouter = require("./api/users_auth/user_auth-router")
+const studentsRouter = require("./api/students/students-router")
 
 const server = express()
 const host = process.env.HOST || "0.0.0.0"
@@ -13,6 +14,7 @@ server.use(cors())
 server.use(express.json())
 
 server.use("/api/users", usersRouter)
+server.use("/api/students", studentsRouter)
 
 server.get("/", (req, res, next) => {
   res.json({
