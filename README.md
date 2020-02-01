@@ -18,6 +18,15 @@ POST  https://international-school-sw.herokuapp.com/api/users/login
 3. Register 
 POST  https://international-school-sw.herokuapp.com/api/users/register
 
+{
+	"username": "new_user7", 
+  "name": "New User", 
+  "email": "new_user7@gmail.com", 
+  "phone_number": 38793478478786, 
+  "password": "password",
+	"role_id": 2
+}
+
 4. Get all students
 GET https://international-school-sw.herokuapp.com/api/students
 
@@ -26,3 +35,22 @@ GET https://international-school-sw.herokuapp.com/api/students/classes/:class_id
 
 6. Get students by grade
 GET https://international-school-sw.herokuapp.com/api/students/grades/:grade_id
+
+7. Get student by ID
+GET https://international-school-sw.herokuapp.com/api/students/:id
+
+8. Add new student
+POST https://international-school-sw.herokuapp.com/api/students
+
+{
+  "name": "Jane Foster1",
+  "grade_id": 1,
+  "class_id": 5,
+  "background": "too sleepy to write somithing",
+  "status_id": 1,
+  "age": 10,
+  "insurance": 2,
+  "birth_certificate": 1,
+  "special_needs": "nothing",
+  "contact_id": 1
+}

@@ -61,7 +61,16 @@ router.get("/:id", async (req, res, next) => {
     } catch(err) {
       next(err)
     }
-  })
+})
+
+router.post("/", async (req, res, next) => {
+    try {
+      const newStudent = await studentsModel.add(req.body)
+      res.status(201).json(newStudent)
+    } catch(err) {
+      next(err)
+    }
+})
   
 
 module.exports = router
