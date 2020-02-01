@@ -54,3 +54,19 @@ POST https://international-school-sw.herokuapp.com/api/students
   "special_needs": "nothing",
   "contact_id": 1
 }
+
+9. Edit student
+PUT https://international-school-sw.herokuapp.com/api/students/:id
+
+{
+  "name": "John Foster Jr",
+  "grade_id": 1,
+  "class_id": 5,
+  "background": "too sleepy to write somithing",
+  "status_id": 1,
+  "age": 10,
+  "insurance": 2,
+  "birth_certificate": 1,
+  "special_needs": "nothing",
+  "contact_id": 1
+}

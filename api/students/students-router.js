@@ -71,6 +71,24 @@ router.post("/", async (req, res, next) => {
       next(err)
     }
 })
+
+router.put("/:id", async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const student = await studentsModel.update(id, req.body)
+  
+      if (student) {
+        res.json(student)
+      } else {
+        res.status(404).json({
+          message: "Could not find student with given ID",
+        })
+      }
+    } catch(err) {
+      next(err)
+    }
+})
+  
   
 
 module.exports = router

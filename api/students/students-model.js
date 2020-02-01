@@ -59,10 +59,23 @@ async function add(data) {
     return findById(id)
 }
 
+async function update(id, body) {
+	await db("students as s") 
+        .join("grades as g", "g.id", "s.grade_id") 
+        .where({ id })
+        .join("classes as c", "c.id", "s.class_id")
+        .join("status as st", "st.id", "status_id")
+        .join("contact_info as ci", "ci.id", "contact_id")
+		.update(body)
+
+	return findById(id)
+}
+
 module.exports = {
   find,
   findByClass,
   findByGrade,
   findById,
-  add
+  add,
+  update,
 }
