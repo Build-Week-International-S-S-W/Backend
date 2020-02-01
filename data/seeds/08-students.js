@@ -13,7 +13,7 @@ exports.seed = async (knex) => {
       contact_id: 1 },
 
       { name: "Mary Rock",
-      grade_id: 3, 
+      grade_id: 2, 
       class_id: 8, 
       background: "too sleepy to write somithing", 
       status_id: 1, 

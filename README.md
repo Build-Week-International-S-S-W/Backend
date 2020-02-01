@@ -22,4 +22,7 @@ POST  https://international-school-sw.herokuapp.com/api/users/register
 GET https://international-school-sw.herokuapp.com/api/students
 
 5. Get students by class
-GET https://international-school-sw.herokuapp.com/api/students/:class_id
+GET https://international-school-sw.herokuapp.com/api/students/classes/:class_id
+
+6. Get students by grade
+GET https://international-school-sw.herokuapp.com/api/students/grades/:grade_id

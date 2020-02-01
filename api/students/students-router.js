@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 })
 
-router.get("/:class_id", async (req, res, next) => {
+router.get("/classes/:class_id", async (req, res, next) => {
     try {
       const { class_id } = req.params
       const students = await studentsModel.findByClass(class_id)
@@ -27,6 +27,23 @@ router.get("/:class_id", async (req, res, next) => {
     } catch(err) {
       next(err)
     }
-  })
+})
+
+router.get("/grades/:grade_id", async (req, res, next) => {
+    try {
+      const { grade_id } = req.params
+      const students = await studentsModel.findByGrade(grade_id)
+  
+      if (students && grade_id < 4 ) {
+        res.json(students)
+      } else {
+        res.status(404).json({
+          message: "Can't find this grade",
+        })
+      }
+    } catch(err) {
+      next(err)
+    }
+})
 
 module.exports = router

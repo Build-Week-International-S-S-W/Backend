@@ -8,7 +8,7 @@ exports.up = async function(knex) {
     await knex.schema.createTable("classes", (class_table) => {
         class_table.increments("id")
         class_table.integer("class")
-        class_table.integer("grade_id")
+        class_table.integer("grades_id")
             .references("id")
             .inTable("grades")
             .onDelete("SET NULL")
