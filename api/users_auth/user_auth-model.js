@@ -15,7 +15,7 @@ function findBy(filter) {
 
 async function add(user) {
   const [id] = await db("users")
-    .join("roles", "roles.id", "users.role_id") 
+    // .join("roles", "roles.id", "users.role_id") 
     .insert(user)
  
   return findById(id)
@@ -24,9 +24,11 @@ async function add(user) {
 function findById(u_id) {
     return db("users")
       .where({ u_id })
-      .join("roles", "roles.id", "users.role_id") 
+      // .join("roles", "roles.id", "users.role_id") 
+      // .first("users.id as u_id", "users.username", "users.name", "users.email", 
+      //       "users.phone_number", "users.password", "roles.role_name")
       .first("users.id as u_id", "users.username", "users.name", "users.email", 
-            "users.phone_number", "users.password", "roles.role_name")
+        "users.phone_number", "users.password")
 }
 
 module.exports = {
