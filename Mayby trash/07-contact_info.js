@@ -3,12 +3,10 @@ exports.seed = async (knex) => {
 
     { contact_name: "Gretta Humilton", 
       phone_number: 342865467, 
-      email: "gretta_humilton@gmail.com", 
-      relation_id: 1 },
+      email: "gretta_humilton@gmail.com", },
 
     { contact_name: "George Rock", 
       phone_number: 389568399, 
-      email: "george_rock@gmail.com", 
-      relation_id: 2 },
+      email: "george_rock@gmail.com" },
   ])
 }
