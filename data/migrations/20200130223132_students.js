@@ -71,6 +71,11 @@ exports.up = async function(knex) {
             .defaultTo(true)
         student.string("special_needs", 1000)
         student.string("student_contact")
+        student.string("social_worker")
+            .references("username")
+            .inTable("users")
+            .onDelete("SET NULL")
+            .onUpdate("SET NULL")
         // student.string("student_contact_name")
         //     .references("contact_name")
         //     .inTable("contact_info")
@@ -78,25 +83,25 @@ exports.up = async function(knex) {
         //     .onUpdate("SET NULL")
     });
 
-    await knex.schema.createTable("students_users", (table) => {
-        table.integer("student_id")
-            .notNullable()
-            .references("id")
-            .inTable("students")
-            .onDelete("CASCADE")
-            .onUpdate("CASCADE")
-        table.integer("user_id")
-            .notNullable()
-            .references("id")
-            .inTable("users")
-            .onDelete("CASCADE")
-            .onUpdate("CASCADE")
-        table.primary(["student_id", "user_id"])
-    })
+    // await knex.schema.createTable("students_users", (table) => {
+    //     table.integer("student_id")
+    //         .notNullable()
+    //         .references("id")
+    //         .inTable("students")
+    //         .onDelete("CASCADE")
+    //         .onUpdate("CASCADE")
+    //     table.integer("user_id")
+    //         .notNullable()
+    //         .references("id")
+    //         .inTable("users")
+    //         .onDelete("CASCADE")
+    //         .onUpdate("CASCADE")
+    //     table.primary(["student_id", "user_id"])
+    // })
   };
   
   exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists("students_users");
+    // await knex.schema.dropTableIfExists("students_users");
     await knex.schema.dropTableIfExists("students");
     // await knex.schema.dropTableIfExists("contact_info");
     // await knex.schema.dropTableIfExists("relations");
