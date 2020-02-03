@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs")
 const db = require("../../data/dbConfig")
 
 function find() {
@@ -16,6 +17,7 @@ function findBy(filter) {
 }
 
 async function add(user) {
+  user.password = await bcrypt.hash(user.password, 10)
   const [id] = await db("users")
     // .join("roles", "roles.id", "users.role_id") 
     .insert(user)
