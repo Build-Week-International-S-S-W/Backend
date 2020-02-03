@@ -2,9 +2,11 @@ const db = require("../../data/dbConfig")
 
 function find() {
   return db("users") 
-    .join("roles", "roles.id", "users.role_id") 
+    // .join("roles", "roles.id", "users.role_id") 
+    // .select("users.id", "users.username", "users.name", "users.email", 
+    //         "users.phone_number", "users.password", "roles.role_name") 
     .select("users.id", "users.username", "users.name", "users.email", 
-            "users.phone_number", "users.password", "roles.role_name") 
+    "users.phone_number", "users.password", "users.role")
 }
 
 function findBy(filter) {
@@ -28,7 +30,7 @@ function findById(u_id) {
       // .first("users.id as u_id", "users.username", "users.name", "users.email", 
       //       "users.phone_number", "users.password", "roles.role_name")
       .first("users.id as u_id", "users.username", "users.name", "users.email", 
-        "users.phone_number", "users.password")
+        "users.phone_number", "users.password", "users.role")
 }
 
 module.exports = {

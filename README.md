@@ -23,8 +23,7 @@ POST  https://international-school-sw.herokuapp.com/api/users/register
   "name": "New User", 
   "email": "new_user7@gmail.com", 
   "phone_number": 38793478478786, 
-  "password": "password",
-	"role_id": 2
+  "password": "password"
 }
 
 4. Get all students
