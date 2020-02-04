@@ -31,7 +31,10 @@ server.use((err, req, res, next) => {
   })
 })
 
+if (!module.parent){
+  server.listen(port, host, () => {
+    console.log(`\n** Running on http://${host}:${port} **\n`)
+  })
+}
 
-server.listen(port, host, () => {
-  console.log(`\n** Running on http://${host}:${port} **\n`)
-})
+module.exports = server;
