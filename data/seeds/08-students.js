@@ -21,7 +21,7 @@ exports.seed = async (knex) => {
       age: 14, 
       insurance: true, 
       birth_certificate: true, 
-      special_needs: "alergie: oranges", 
+      special_needs: "alergy: oranges", 
       student_contact: "name: 'George Rock', phone number: 389568399, email: 'george_rock@gmail.com'",
       social_worker: "johny"},
   ])

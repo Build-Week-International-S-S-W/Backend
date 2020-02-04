@@ -42,15 +42,35 @@ GET https://international-school-sw.herokuapp.com/api/students/:id
 POST https://international-school-sw.herokuapp.com/api/students
 
   "name": "Johny Ground",  => string, has to be unique
+
+
   "student_grade": "middle",   => string, "elementary", "middle" or "high"
+
+
   "student_class": 8, => number from 1 to 12
+
+
   "background": "too sleepy to write somithing", => string
+
+
   "student_status": "student", => string, "student", "past student" or "visitor"
+
+
   "age": 14, => number
+
+
   "insurance": 1, => boolean, 0 or 1
+
+
   "birth_certificate": 1, => boolean, 0 or 1
-  "special_needs": "alergie: oranges", => string
+
+
+  "special_needs": "alergy: oranges", => string
+
+
 	"student_contact": "name: 'James Ground', phone number: 675565567, email:     'james_g@gmail.com'", => string (you can write it without that name/phone number etc; just string)
+
+  
 	"social_worker": "anna_maria" => has to be existing username of social worker, string, right now in data base just two social workers "anna_maria" and "johny"
 
 9. Edit student
