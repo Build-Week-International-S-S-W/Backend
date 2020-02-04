@@ -24,25 +24,6 @@ exports.up = async function(knex) {
             .unique()
     });
 
-    // await knex.schema.createTable("relations", (relation) => {
-    //     relation.increments("id")
-    //     relation.string("relation")
-    // });
-
-    // await knex.schema.createTable("contact_info", (contact) => {
-    //     contact.increments("id")
-    //     contact.string("contact_name")
-    //         .notNullable()
-    //         .unique()
-    //     contact.integer("phone_number")
-    //     contact.string("email")
-        // contact.integer("relation_id")
-        //     .references("id")
-        //     .inTable("relations")
-        //     .onDelete("SET NULL")
-        //     .onUpdate("SET NULL")
-    // });
-
     await knex.schema.createTable("students", (student) => {
         student.increments("id")
         student.string("name")
@@ -76,35 +57,11 @@ exports.up = async function(knex) {
             .inTable("users")
             .onDelete("SET NULL")
             .onUpdate("SET NULL")
-        // student.string("student_contact_name")
-        //     .references("contact_name")
-        //     .inTable("contact_info")
-        //     .onDelete("SET NULL")
-        //     .onUpdate("SET NULL")
     });
-
-    // await knex.schema.createTable("students_users", (table) => {
-    //     table.integer("student_id")
-    //         .notNullable()
-    //         .references("id")
-    //         .inTable("students")
-    //         .onDelete("CASCADE")
-    //         .onUpdate("CASCADE")
-    //     table.integer("user_id")
-    //         .notNullable()
-    //         .references("id")
-    //         .inTable("users")
-    //         .onDelete("CASCADE")
-    //         .onUpdate("CASCADE")
-    //     table.primary(["student_id", "user_id"])
-    // })
-  };
+};
   
   exports.down = async function(knex) {
-    // await knex.schema.dropTableIfExists("students_users");
     await knex.schema.dropTableIfExists("students");
-    // await knex.schema.dropTableIfExists("contact_info");
-    // await knex.schema.dropTableIfExists("relations");
     await knex.schema.dropTableIfExists("status");
     await knex.schema.dropTableIfExists("classes");
     await knex.schema.dropTableIfExists("grades");

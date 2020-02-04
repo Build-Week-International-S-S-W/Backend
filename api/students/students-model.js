@@ -6,7 +6,6 @@ function find() {
     .join("classes as c", "c.class", "s.student_class")
     .join("status as st", "st.status", "student_status")
     .join("users as u", "u.username", "s.social_worker")
-    // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
     .select("s.id", "s.name", "g.grade", "c.class", "s.background", 
         "st.status", "s.age", "s.insurance", "s.birth_certificate", 
         "s.special_needs", "s.student_contact", "s.social_worker") 
@@ -18,7 +17,6 @@ function findByClass(class_id) {
     .join("classes as c", "c.class", "s.student_class")
     .join("status as st", "st.status", "student_status")
     .join("users as u", "u.username", "s.social_worker")
-    // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
     .where({ "c.id": class_id })
     .select("s.id", "s.name", "g.grade", "c.class", "s.background", 
         "st.status", "s.age", "s.insurance", "s.birth_certificate", 
@@ -31,7 +29,6 @@ function findByGrade(grade_id) {
     .join("classes as c", "c.class", "s.student_class")
     .join("status as st", "st.status", "student_status")
     .join("users as u", "u.username", "s.social_worker")
-    // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
     .where({ "g.id": grade_id })
     .select("s.id", "s.name", "g.grade", "c.class", "s.background", 
         "st.status", "s.age", "s.insurance", "s.birth_certificate", 
@@ -44,7 +41,6 @@ function findById(s_id) {
     .join("classes as c", "c.class", "s.student_class")
     .join("status as st", "st.status", "student_status")
     .join("users as u", "u.username", "s.social_worker")
-    // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
     .where({ s_id })
     .first("s.id as s_id", "s.name", "g.grade", "c.class", "s.background", 
         "st.status", "s.age", "s.insurance", "s.birth_certificate", 
@@ -58,7 +54,6 @@ async function add(data) {
         .join("classes as c", "c.class", "s.student_class")
         .join("status as st", "st.status", "student_status")
         .join("users as u", "u.username", "s.social_worker")
-        // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
         .insert(data)
     
     return findById(id)
@@ -70,7 +65,6 @@ async function update(id, body) {
         .join("classes as c", "c.class", "s.student_class")
         .join("status as st", "st.status", "student_status")
         .join("users as u", "u.username", "s.social_worker")
-        // .join("contact_info as ci", "ci.contact_name", "student_contact_name")
         .where({ id })
 		.update(body)
 
