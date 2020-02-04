@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const usersModel = require("./user_auth-model")
 const secrets = require("../../config/secrets")
+const restricted = require("./authenticate-middleware")
 
 const router = express.Router()
 
@@ -20,7 +21,7 @@ function generateToken(user){
   return jwt.sign(payload, secrets.jwtSecret, options)
 }
 
-router.get("/", async (req, res, next) => {
+router.get("/", restricted(), async (req, res, next) => {
   try {
     const users = await usersModel.find()
     // console.log(users)
