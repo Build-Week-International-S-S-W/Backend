@@ -25,7 +25,7 @@ router.get("/", restricted(), async (req, res, next) => {
   try {
     const users = await usersModel.find()
     // console.log(users)
-    res.json(users)
+    res.status(200).json(users)
   } catch (err) {
     next(err)
   }

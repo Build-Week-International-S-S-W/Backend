@@ -6,7 +6,7 @@ const router = express.Router()
 router.get("/", async (req, res, next) => {
   try {
     const students = await studentsModel.find()
-    res.json(students)
+    res.status(200).json(students)
   } catch (err) {
     next(err)
   }
@@ -18,7 +18,7 @@ router.get("/classes/:class_id", async (req, res, next) => {
       const students = await studentsModel.findByClass(class_id)
   
       if (students && class_id < 13 ) {
-        res.json(students)
+        res.status(200).json(students)
       } else {
         res.status(404).json({
           message: "Can't find this class",
@@ -35,7 +35,7 @@ router.get("/grades/:grade_id", async (req, res, next) => {
       const students = await studentsModel.findByGrade(grade_id)
   
       if (students && grade_id < 4 ) {
-        res.json(students)
+        res.status(200).json(students)
       } else {
         res.status(404).json({
           message: "Can't find this grade",
@@ -52,7 +52,7 @@ router.get("/:id", async (req, res, next) => {
       const student = await studentsModel.findById(id)
   
       if (student) {
-        res.json(student)
+        res.status(200).json(student)
       } else {
         res.status(404).json({
           message: "Could not find student with given ID",
@@ -78,7 +78,7 @@ router.put("/:id", async (req, res, next) => {
       const student = await studentsModel.update(id, req.body)
   
       if (student) {
-        res.json(student)
+        res.status(200).json(student)
       } else {
         res.status(404).json({
           message: "Could not find student with given ID",
