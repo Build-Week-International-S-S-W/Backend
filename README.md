@@ -1,19 +1,76 @@
+# International School Social Worker
+:-----------------------:
+
+
+**Heroku link:**
+[https://international-school-sw.herokuapp.com]
+
+
+## USER ROUTERS
+
+
+### **_`LOGIN`_**
+
+
+**POST  `/api/users/login`**
+
+
+#### Headers
+
+Name | Description
+:---: | :---:
+Content-Type | application/json
+
+
+#### Body
+
+Name | Type | Required | Details
+:---: | :---: | :---: | :---: 
+username | "String" | Yes | Must be unique
+password | "String" | Yes | 
+
+
+#### Example of the body
+
+```
+{
+  username: "johny", 
+  password: "Just_Password"
+}
+```
+
+#### Responses
+
+##### 200 OK
+
+```
+{
+  "message": "Welcome johny",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo2LCJ1c2VybmFtZSI6Im5ld191c2VyMiIsImlhdCI6MTU4MDg3NjU5NywiZXhwIjoxNTgxNDgxMzk3fQ.KHyM1TRfjcJ-l1RalgyDs1fGXUzelsz1zYe-rqyJIBQ"
+}
+```
+
+##### 401 Unauthorized
+
+```
+{
+  "message": "Invalid Credentials"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+
 Some APIs for the beginning (will be updated during the process)
 
 1. To get all users (administrator and social workers)
 GET    https://international-school-sw.herokuapp.com/api/users
 
-2. Login 
-POST  https://international-school-sw.herokuapp.com/api/users/login
-
-    username: "boss", 
-    password: "YoullNeverGuess"
-
-    username: "anna_maria", 
-    password: "Bla_Bla_Bla"
-
-    username: "johny", 
-    password: "Just_Password"
 
 3. Register 
 POST  https://international-school-sw.herokuapp.com/api/users/register
