@@ -4,7 +4,7 @@ const db = require("../../data/dbConfig")
 function find() {
   return db("users") 
     .select("users.id", "users.username", "users.name", "users.email", 
-    "users.phone_number", "users.password", "users.role")
+      "users.phone_number", "users.role")
 }
 
 function findBy(filter) {
@@ -25,7 +25,7 @@ function findById(u_id) {
     return db("users")
       .where({ u_id })
       .first("users.id as u_id", "users.username", "users.name", "users.email", 
-        "users.phone_number", "users.password", "users.role")
+        "users.phone_number", "users.role")
 }
 
 module.exports = {
