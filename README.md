@@ -1,12 +1,77 @@
 # International School Social Worker
-:-----------------------:
 
 
 **Heroku link:**
 [https://international-school-sw.herokuapp.com]
 
 
+=======================================================================
+
 ## USER ROUTERS
+
+=======================================================================
+
+### **_`REGISTER`_**
+
+
+**POST  `/api/users/register`**
+
+
+#### Headers
+
+Name | Description
+:---: | :---:
+Content-Type | application/json
+
+
+#### Body
+
+Name | Type | Required | Details
+:---: | :---: | :---: | :---: 
+username | "String" | Yes | Must be unique
+name | "String" | No | 
+email | "String" | No | Must be unique
+phone_number | Number | No | Must be unique
+password | "String" | Yes | 
+
+
+#### Example of the body
+
+```
+{
+	"username": "new_user2", 
+  "name": "New User2", 
+  "email": "new_user2@gmail.com", 
+  "phone_number": 4324324324, 
+  "password": "password"
+}
+```
+
+#### Responses
+
+##### 201 Created
+
+```
+{
+  "u_id": 9,
+  "username": "new_user2", 
+  "name": "New User2", 
+  "email": "new_user2@gmail.com", 
+  "phone_number": 4324324324, ,
+  "role": "social worker"
+}
+```
+
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+
+-----------------------------------------------------------------------
 
 
 ### **_`LOGIN`_**
@@ -65,75 +130,560 @@ password | "String" | Yes |
 }
 ```
 
-
-Some APIs for the beginning (will be updated during the process)
-
-1. To get all users (administrator and social workers)
-GET    https://international-school-sw.herokuapp.com/api/users
+-----------------------------------------------------------------------
 
 
-3. Register 
-POST  https://international-school-sw.herokuapp.com/api/users/register
+### **_`GET ALL USERS`_**
 
+
+**GET  `/api/users`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+
+
+#### Responses
+
+##### 200 OK
+
+```
+[
+  {
+    "id": 1,
+    "username": "boss",
+    "name": "Big Boss",
+    "email": "big_boss@gmail.com",
+    "phone_number": 1234567890,
+    "role": "administrator"
+  },
+  {
+    "id": 2,
+    "username": "anna_maria",
+    "name": "Anna Maria Superkind",
+    "email": "anna_maria_superkind@gmail.com",
+    "phone_number": 2345678901,
+    "role": "social worker"
+  }
+]
+```
+
+##### 401 Unauthorized
+
+```
 {
-	"username": "new_user7", 
-  "name": "New User", 
-  "email": "new_user7@gmail.com", 
-  "phone_number": 38793478478786, 
-  "password": "password"
+  "message": "You have to be logged in!"
 }
+```
 
-4. Get all students
-GET https://international-school-sw.herokuapp.com/api/students
-
-5. Get students by class
-GET https://international-school-sw.herokuapp.com/api/students/classes/:class_id
-
-6. Get students by grade
-GET https://international-school-sw.herokuapp.com/api/students/grades/:grade_id
-
-7. Get student by ID
-GET https://international-school-sw.herokuapp.com/api/students/:id
-
-8. Add new student
-POST https://international-school-sw.herokuapp.com/api/students
-
-  "name": "Johny Ground",  => string, has to be unique
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
 
 
-  "student_grade": "middle",   => string, "elementary", "middle" or "high"
+=======================================================================
+
+## STUDENTS ROUTERS
+
+=======================================================================
 
 
-  "student_class": 8, => number from 1 to 12
+### **_`GET ALL STUDENTS`_**
 
 
-  "background": "too sleepy to write somithing", => string
+**GET  `/api/students`**
 
 
-  "student_status": "student", => string, "student", "past student" or "visitor"
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
 
 
-  "age": 14, => number
+#### Responses
+
+##### 200 OK
+
+```
+[
+  {
+    "id": 1,
+    "name": "Jane Humilton",
+    "grade": "high",
+    "class": 9,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 15,
+    "insurance": 1,
+    "birth_certificate": 1,
+    "special_needs": "none",
+    "student_contact": "name: 'Gretta Humilton', phone number: 342865467, email: 'gretta_humilton@gmail.com'",
+    "social_worker": "anna_maria"
+  },
+  {
+    "id": 2,
+    "name": "Mary Rock",
+    "grade": "middle",
+    "class": 8,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 14,
+    "insurance": 1,
+    "birth_certificate": 1,
+    "special_needs": "alergy: oranges",
+    "student_contact": "name: 'George Rock', phone number: 389568399, email: 'george_rock@gmail.com'",
+    "social_worker": "johny"
+  }
+]
+```
+
+##### 401 Unauthorized
+
+```
+{
+  "message": "You have to be logged in!"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+-----------------------------------------------------------------------
 
 
-  "insurance": 1, => boolean, 0 or 1
+### **_`GET STUDENTS BY CLASS`_**
 
 
-  "birth_certificate": 1, => boolean, 0 or 1
+**GET  `/api/students/classes/:class_id`**
 
 
-  "special_needs": "alergy: oranges", => string
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
 
 
-	"student_contact": "name: 'James Ground', phone number: 675565567, email:     'james_g@gmail.com'", => string (you can write it without that name/phone number etc; just string)
+#### Responses
 
-  
-	"social_worker": "anna_maria" => has to be existing username of social worker, string, right now in data base just two social workers "anna_maria" and "johny"
+##### 200 OK
 
-9. Edit student
-PUT https://international-school-sw.herokuapp.com/api/students/:id
+```
+[
+  {
+    "id": 2,
+    "name": "Mary Rock",
+    "grade": "middle",
+    "class": 8,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 14,
+    "insurance": 1,
+    "birth_certificate": 1,
+    "special_needs": "alergy: oranges",
+    "student_contact": "name: 'George Rock', phone number: 389568399, email: 'george_rock@gmail.com'",
+    "social_worker": "johny"
+  },
+  {
+    "id": 3,
+    "name": "John Calm",
+    "grade": "middle",
+    "class": 8,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 14,
+    "insurance": 0,
+    "birth_certificate": 1,
+    "special_needs": "none",
+    "student_contact": "name: 'Clara Calm', phone number: 111111111, email: 'clara_2222@gmail.com'",
+    "social_worker": "johny"
+  }
+]
+```
 
-The same as ADD student
+##### 401 Unauthorized
 
-10. Delete student
-DELETE https://international-school-sw.herokuapp.com/api/students/:id
+```
+{
+  "message": "You have to be logged in!"
+}
+```
+
+##### 404 Not Found
+
+```
+{
+  "message": "Can't find this class"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+-----------------------------------------------------------------------
+
+
+### **_`GET STUDENTS BY GRADE`_**
+
+
+**GET  `/api/students/grades/:grade_id`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+
+
+#### Responses
+
+##### 200 OK
+
+```
+[
+  {
+    "id": 4,
+    "name": "Angela Clark",
+    "grade": "elementary",
+    "class": 4,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 10,
+    "insurance": 1,
+    "birth_certificate": 1,
+    "special_needs": "none",
+    "student_contact": "name: 'Rick Clark', phone number: 3388872992, email: 'r_clark@gmail.com'",
+    "social_worker": "maria_2020"
+  },
+  {
+    "id": 5,
+    "name": "Leo Foster",
+    "grade": "elementary",
+    "class": 4,
+    "background": "too sleepy to write something",
+    "status": "student",
+    "age": 10,
+    "insurance": 1,
+    "birth_certificate": 1,
+    "special_needs": "none",
+    "student_contact": "name: 'Lilia Foster', phone number: 47837687378, email: 'l_f123@gmail.com'",
+    "social_worker": "alex_k"
+  }
+]
+```
+
+##### 401 Unauthorized
+
+```
+{
+  "message": "You have to be logged in!"
+}
+```
+
+##### 404 Not Found
+
+```
+{
+  "message": "Can't find this grade"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+-----------------------------------------------------------------------
+
+
+### **_`GET STUDENTS BY ID`_**
+
+
+**GET  `/api/students/:id`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+
+
+#### Responses
+
+##### 200 OK
+
+```
+{
+  "s_id": 2,
+  "name": "Mary Rock",
+  "grade": "middle",
+  "class": 8,
+  "background": "too sleepy to write something",
+  "status": "student",
+  "age": 14,
+  "insurance": 1,
+  "birth_certificate": 1,
+  "special_needs": "alergy: oranges",
+  "student_contact": "name: 'George Rock', phone number: 389568399, email: 'george_rock@gmail.com'",
+  "social_worker": "johny"
+}
+```
+
+##### 401 Unauthorized
+
+```
+{
+  "message": "You have to be logged in!"
+}
+```
+
+##### 404 Not Found
+
+```
+{
+  "message": "Could not find student with given ID"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+-----------------------------------------------------------------------
+
+
+### **_`ADD NEW STUDENT`_**
+
+
+**POST  `/api/students`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+Content-Type |  | Yes | application/json
+
+
+#### Body
+
+Name | Type | Required | Details
+:---: | :---: | :---: | :---: 
+name | "String" | Yes | Must be unique
+student_grade | "String" | No | Should be one of three: "elementary", "middle" or "high"
+student_class | Number | No | Should be between 1-12
+background | "String" | No | 
+student_status | "String" | No | Should be one of three: "student", "past student" or "visitor"
+age | Number | No | 
+insurance | Boolean | No | Default to "False"; Should be 0 or 1 
+birth_certificate | Boolean | No | Default to "True"; Should be 0 or 1 
+special_needs | "String" | No | 
+student_contact | "String" | No | 
+social_worker | "String" | No | username of social worker
+
+
+
+#### Example of the body
+
+_The fields that aren't required can be missed in this request_
+
+
+```
+{
+  "name": "Johny Ground",
+  "student_grade": "middle",
+  "student_class": 8,
+  "background": "too sleepy to write somithing",
+  "student_status": "student",
+  "age": 14,
+  "insurance": 1,
+  "birth_certificate": 1,
+  "special_needs": "alergie: oranges",
+	"student_contact": "name: 'James Ground', phone number: 675565567, email: 'james_g@gmail.com'",
+	"social_worker": "anna_maria"
+}
+```
+
+#### Responses
+
+##### 201 Created
+
+```
+{
+  "s_id": 21,
+  "name": "Johny Ground",
+  "grade": "middle",
+  "class": 8,
+  "background": "too sleepy to write somithing",
+  "status": "student",
+  "age": 14,
+  "insurance": 1,
+  "birth_certificate": 1,
+  "special_needs": "alergie: oranges",
+  "student_contact": "name: 'James Ground', phone number: 675565567, email: 'james_g@gmail.com'",
+  "social_worker": "anna_maria"
+}
+```
+
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+
+-----------------------------------------------------------------------
+
+
+### **_`EDIT STUDENT`_**
+
+
+**PUT  `/api/students/:id`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+Content-Type |  | Yes | application/json
+
+
+#### Body
+
+Name | Type | Required | Details
+:---: | :---: | :---: | :---: 
+name | "String" | Yes | Must be unique
+student_grade | "String" | No | Should be one of three: "elementary", "middle" or "high"
+student_class | Number | No | Should be between 1-12
+background | "String" | No | 
+student_status | "String" | No | Should be one of three: "student", "past student" or "visitor"
+age | Number | No | 
+insurance | Boolean | No | Default to "False"; Should be 0 or 1 
+birth_certificate | Boolean | No | Default to "True"; Should be 0 or 1 
+special_needs | "String" | No | 
+student_contact | "String" | No | 
+social_worker | "String" | No | username of social worker
+
+
+
+#### Example of the body
+
+_The fields that aren't required can be missed in this request_
+
+```
+{
+  "name": "Johny Ground1",
+  "student_grade": "middle",
+  "student_class": 8,
+  "background": "too sleepy to write somithing",
+  "student_status": "student",
+  "age": 14,
+  "insurance": 1,
+  "birth_certificate": 1,
+  "special_needs": "alergie: oranges",
+	"student_contact": "name: 'James Ground', phone number: 675565567, email: 'james_g@gmail.com'",
+	"social_worker": "anna_maria"
+}
+```
+
+#### Responses
+
+##### 200 OK
+
+```
+{
+  "s_id": 21,
+  "name": "Johny Ground1",
+  "grade": "middle",
+  "class": 8,
+  "background": "too sleepy to write somithing",
+  "status": "student",
+  "age": 14,
+  "insurance": 1,
+  "birth_certificate": 1,
+  "special_needs": "alergie: oranges",
+  "student_contact": "name: 'James Ground', phone number: 675565567, email: 'james_g@gmail.com'",
+  "social_worker": "anna_maria"
+}
+```
+
+##### 404 Not Found
+
+```
+{
+  "message": "Could not find student with given ID"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
+
+
+-----------------------------------------------------------------------
+
+
+
+
+### **_`DELETE STUDENT`_**
+
+
+**DELETE  `/api/students/:id`**
+
+
+#### Headers
+
+Name | Type | Required | Description
+:---: | :---: | :---: | :---: 
+Authorization | token | Yes | User must be loged in
+
+
+#### Responses
+
+##### 204 No Content
+
+_There is no body in this response_
+
+##### 404 Not Found
+
+```
+{
+  "message": "Could not find user with given ID"
+}
+```
+
+##### 500 Internal Server Error
+```
+{
+  "message": "Something went wrong"
+}
+```
