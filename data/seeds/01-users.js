@@ -27,5 +27,19 @@ exports.seed = async (knex) => {
       password: `${await hash("Just_Password")}`, 
       role: "social worker" },
 
+    { username: "alex_k", 
+      name: "Alex Karpenko", 
+      email: "alex_k@gmail.com", 
+      phone_number: 1452458659, 
+      password: `${await hash("I_Like_Traveling")}`, 
+      role: "social worker" },
+
+    { username: "maria_2020", 
+      name: "Maria Horda", 
+      email: "maria_horda@gmail.com", 
+      phone_number: 2341987655, 
+      password: `${await hash("JustDo1t")}`, 
+      role: "social worker" },
+
   ])
 }
