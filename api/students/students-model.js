@@ -47,55 +47,55 @@ function findById(s_id) {
         "s.special_needs", "s.student_contact", "s.social_worker") 
 }
 
-// async function add(data) {
+async function add(data) {
 
-function add(data){
+// function add(data){
 
-      // for postgres
-    return db("students as s")
-    .join("grades as g", "g.grade", "s.student_grade") 
-    .join("classes as c", "c.class", "s.student_class")
-    .join("status as st", "st.status", "student_status")
-    .join("users as u", "u.username", "s.social_worker")
-    .insert(data)
-    .returning("*")
+    //   // for postgres
+    // return db("students as s")
+    // .join("grades as g", "g.grade", "s.student_grade") 
+    // .join("classes as c", "c.class", "s.student_class")
+    // .join("status as st", "st.status", "student_status")
+    // .join("users as u", "u.username", "s.social_worker")
+    // .insert(data)
+    // .returning("*")
 
 
     // // SQLite =======
-    // const [id] = await db("students as s")
-    //     .join("grades as g", "g.grade", "s.student_grade") 
-    //     .join("classes as c", "c.class", "s.student_class")
-    //     .join("status as st", "st.status", "student_status")
-    //     .join("users as u", "u.username", "s.social_worker")
-    //     .insert(data)
+    const [id] = await db("students as s")
+        .join("grades as g", "g.grade", "s.student_grade") 
+        .join("classes as c", "c.class", "s.student_class")
+        .join("status as st", "st.status", "student_status")
+        .join("users as u", "u.username", "s.social_worker")
+        .insert(data)
     
-    // return findById(id)
+    return findById(id)
     // // ===============
 }
 
-// async function update(id, body) {
-    function update(id, body) {
+async function update(id, body) {
+    // function update(id, body) {
 
 
-    return db("students as s") 
-    .join("grades as g", "g.grade", "s.student_grade") 
-    .join("classes as c", "c.class", "s.student_class")
-    .join("status as st", "st.status", "student_status")
-    .join("users as u", "u.username", "s.social_worker")
-    .where({ id })
-    .update(body)
-    .returning("*")
+    // return db("students as s") 
+    // .join("grades as g", "g.grade", "s.student_grade") 
+    // .join("classes as c", "c.class", "s.student_class")
+    // .join("status as st", "st.status", "student_status")
+    // .join("users as u", "u.username", "s.social_worker")
+    // .where({ id })
+    // .update(body)
+    // .returning("*")
 
      // SQLite =======
-	// await db("students as s") 
-    //     .join("grades as g", "g.grade", "s.student_grade") 
-    //     .join("classes as c", "c.class", "s.student_class")
-    //     .join("status as st", "st.status", "student_status")
-    //     .join("users as u", "u.username", "s.social_worker")
-    //     .where({ id })
-	// 	.update(body)
+	await db("students as s") 
+        .join("grades as g", "g.grade", "s.student_grade") 
+        .join("classes as c", "c.class", "s.student_class")
+        .join("status as st", "st.status", "student_status")
+        .join("users as u", "u.username", "s.social_worker")
+        .where({ id })
+		.update(body)
 
-    // return findById(id)
+    return findById(id)
     // ============
 }
 

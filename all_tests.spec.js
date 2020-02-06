@@ -21,7 +21,7 @@ describe("testing users", () =>{
                             email: "new_user2@gmail.com", phone_number: 555555555, 
                             password: "password" })
         const users = await db("users").select()
-        expect(users.length).toEqual(4)
+        expect(users.length).toEqual(6)
     })
 
     test("find user by id - phone number matches", async() => {

@@ -17,16 +17,16 @@ async function add(user) {
   user.password = await bcrypt.hash(user.password, 10)
 
   // for postgres
-  return db("users")
-      .insert(user)
-      .returning("*")
+  // return db("users")
+  //     .insert(user)
+  //     .returning("*")
 // ============
 
   // // SQLite =======
-  // const [id] = await db("users")
-  //   .insert(user)
+  const [id] = await db("users")
+    .insert(user)
  
-  // return findById(id)
+  return findById(id)
   // // =============
 }
 
