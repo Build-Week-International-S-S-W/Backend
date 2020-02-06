@@ -8,7 +8,7 @@ exports.up = async function(knex) {
         users.string("name")
         users.string("email")
             .unique()
-        users.bigInteger("phone_number")
+        users.integer("phone_number")
             .unique()
         users.string("password")
             .notNullable()
