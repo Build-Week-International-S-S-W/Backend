@@ -37,5 +37,21 @@ module.exports = {
       directory: "./data/seeds",
     }
   },
+// for postgres
+  production: {
+    client: 'pg',
+    connection: DATABASE_URL,
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
+// ===================
 
 };
