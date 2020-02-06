@@ -15,10 +15,19 @@ function findBy(filter) {
 
 async function add(user) {
   user.password = await bcrypt.hash(user.password, 10)
-  const [id] = await db("users")
-    .insert(user)
+
+  // for postgres
+  return db("users")
+      .insert(user)
+      .returning("*")
+// ============
+
+  // // SQLite =======
+  // const [id] = await db("users")
+  //   .insert(user)
  
-  return findById(id)
+  // return findById(id)
+  // // =============
 }
 
 function findById(u_id) {

@@ -37,10 +37,10 @@ module.exports = {
       directory: "./data/seeds",
     }
   },
-
+// for postgres
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: DATABASE_URL,
     pool: {
       min: 2,
       max: 10,
@@ -52,5 +52,6 @@ module.exports = {
       directory: './data/seeds',
     },
   },
+// ===================
 
 };
