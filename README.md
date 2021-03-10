@@ -1,12 +1,12 @@
 # International School Social Worker
 
 
-[**Heroku link:**](https://international-school-sw.herokuapp.com)
+[**Heroku**](https://international-school-sw.herokuapp.com)
 
 
 =======================================================================
 
-[**Front-End:**](https://github.com/Build-Week-International-S-S-W/Front-end)
+[**Front-End**](https://github.com/Build-Week-International-S-S-W/Front-end)
 
 
 =======================================================================
